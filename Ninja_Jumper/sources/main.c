@@ -1,3 +1,19 @@
+/*
+Copyright (c) 2018 RAVENEL Pierre
+
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+* Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -99,7 +115,7 @@ void init_fond(int map)
     }
 }
 
-void init_img() ///Crée toutes les surfaces à partir des BMP
+void init_img() ///CrÃ©e toutes les surfaces Ã  partir des BMP
 {
     fusebleu = SDL_LoadBMP("images/test.bmp");
 
@@ -345,7 +361,7 @@ void blittesurfacefondmaison(int x,int y)
     SDL_BlitSurface(surfacefondmaison, NULL, fond, &position);
 }
 
-void tableaudansfond(int tableau[18][12]) //on injecte les différentes matières dans le fond
+void tableaudansfond(int tableau[18][12]) //on injecte les diffÃ©rentes matiÃ¨res dans le fond
 {
     POINT pos;
     int j,i;
@@ -623,7 +639,7 @@ typedef struct //Un niveau complet
     int sens;//sens du perso
     int nombremob;//nombre de sprites ennemis sur le terrain
     SPRITEOBJ mob[nombredemobmax];//les enemies
-    POINT pwin;//la zone où il faut arriver ( circulaire = + facile)
+    POINT pwin;//la zone oÃ¹ il faut arriver ( circulaire = + facile)
 } TERRAIN;
 
 typedef struct //hitbox a 4 points : HG,HD,BD,BG jeu.sens antitrigo
@@ -632,7 +648,7 @@ typedef struct //hitbox a 4 points : HG,HD,BD,BG jeu.sens antitrigo
 } HITBOX;
 
 //==colision :
-void calculhitbox(HITBOX * box,POINT POS) //On définit les 4 points de la hitbox
+void calculhitbox(HITBOX * box,POINT POS) //On dÃ©finit les 4 points de la hitbox
 {
     box->HG.x=POS.x+10;
     box->HG.y=POS.y-2;
@@ -647,7 +663,7 @@ void calculhitbox(HITBOX * box,POINT POS) //On définit les 4 points de la hitbox
     box->BG.y=POS.y-50;
 }
 
-void drawhitbox(HITBOX * box,int color) //fonction non essentielle, réservée au dévelopeur
+void drawhitbox(HITBOX * box,int color) //fonction non essentielle, rÃ©servÃ©e au dÃ©velopeur
 {
     draw_line(box->HG,box->HD,color);
     draw_line(box->HD,box->BD,color);
@@ -655,7 +671,7 @@ void drawhitbox(HITBOX * box,int color) //fonction non essentielle, réservée au 
     draw_line(box->BG,box->HG,color);
 }
 
-BOOL calculcolision(HITBOX * box, TERRAIN * zone) //Puis on vérifie si cette hitbox rentre en collision avec les blocks du tableau ( Pour les depl )
+BOOL calculcolision(HITBOX * box, TERRAIN * zone) //Puis on vÃ©rifie si cette hitbox rentre en collision avec les blocks du tableau ( Pour les depl )
 {
 
     HITBOX boxtableau;
@@ -868,10 +884,10 @@ void initterrain2(TERRAIN * zone, NIVEAU NIVEAU_du_terrain)
     }
 }
 
-void afficheterrain2(TERRAIN * zone) //la surface NIVEAU possède le NIVEAU et il est affiché SUR SDLScreen
+void afficheterrain2(TERRAIN * zone) //la surface NIVEAU possÃ¨de le NIVEAU et il est affichÃ© SUR SDLScreen
 {
 
-    tableaudansfond(zone->terrain);//on injecte les différentes matières dans le "NIVEAU" // Surface pour les clippers
+    tableaudansfond(zone->terrain);//on injecte les diffÃ©rentes matiÃ¨res dans le "NIVEAU" // Surface pour les clippers
     blittefond();//Puis on blitte le NIVEAU
     affiche_all();
 }
@@ -891,12 +907,12 @@ void initspriteobj(SPRITEOBJ * test,int posx, int posy,int r,SKIN skin)
     test->skin=skin;
 }
 
-void actualisepositionspriteobj(SPRITEOBJ * test) //POS modifié de façon circulaire !
+void actualisepositionspriteobj(SPRITEOBJ * test) //POS modifiÃ© de faÃ§on circulaire !
 {
     test->tsaut++;
     if (test->tsaut<=2*test->r)
     {
-        test->pos.y=test->posini.y-sqrt((test->r*test->r)-(test->tsaut-test->r)*(test->tsaut-test->r));    //équation d' un cetest->rcle : test->racine(test->r²-x²)
+        test->pos.y=test->posini.y-sqrt((test->r*test->r)-(test->tsaut-test->r)*(test->tsaut-test->r));    //Ã©quation d' un cetest->rcle : test->racine(test->rÂ²-xÂ²)
         test->pos.x++;
     }
     else if(test->tsaut<=4*test->r)
@@ -911,7 +927,7 @@ void actualisepositionspriteobj(SPRITEOBJ * test) //POS modifié de façon circula
     }
 }
 
-void affichespriteobj(SPRITEOBJ *test) // afficher le sprite à ses coordonnées
+void affichespriteobj(SPRITEOBJ *test) // afficher le sprite Ã  ses coordonnÃ©es
 {
     switch(test->skin)
     {
@@ -948,30 +964,30 @@ int main(int argc, char* argv[])
     int saut=0;
     int tsaut=0;
     int valtempsaut;
-    int sauttemp;// variables pour le saut + variables temporaires (intermédiaires)
+    int sauttemp;// variables pour le saut + variables temporaires (intermÃ©diaires)
     int droite=0;
     int gauche=0;// variables pour le depl perso
-    POINT suivi;// Point pour le suivi rouge ( Indicateur à commenter à l'avenir )
+    POINT suivi;// Point pour le suivi rouge ( Indicateur Ã  commenter Ã  l'avenir )
     int numeromob;
     int continuer=1;
     BOOL mort = FALSE;
     POINT mid;//le milieu du perso;
     int lags;//pour for
 
-    ///création du terrain ========
+    ///crÃ©ation du terrain ========
 
     TERRAIN jeu;
     initterrain2(&jeu,niveau);
     afficheterrain2(&jeu);
 
-    ///création de la hitbox =====
+    ///crÃ©ation de la hitbox =====
 
     HITBOX box;
 
     ///============================
 
 
-    while (continuer) // Le prog continue tant que non croix ou echap //SDL_Delay(1);//intervalle entre chaque NIVEAU à def ? Automatique ne marche pas ? PLZ ! dslay(1) = 1 millisegond : MDR !!
+    while (continuer) // Le prog continue tant que non croix ou echap //SDL_Delay(1);//intervalle entre chaque NIVEAU Ã  def ? Automatique ne marche pas ? PLZ ! dslay(1) = 1 millisegond : MDR !!
     {
 
         SDL_Delay(1);
@@ -995,7 +1011,7 @@ int main(int argc, char* argv[])
             draw_fill_circle(suivi,2,red);
         }
 
-        ///Détection des événements du clavier : ) ========================================
+        ///DÃ©tection des Ã©vÃ©nements du clavier : ) ========================================
         SDL_Event event;
         SDL_PollEvent(&event);
         //droite=0;gauche=0;
@@ -1045,7 +1061,7 @@ int main(int argc, char* argv[])
             case SDLK_RIGHT:
                 droite=0;
                 gauche=0;
-                break;//Wtffffffff ??? Essentiel pour le bug d'appui simultané ?
+                break;//Wtffffffff ??? Essentiel pour le bug d'appui simultanÃ© ?
             case SDLK_LEFT:
                 gauche=0;
                 droite=0;
@@ -1057,7 +1073,7 @@ int main(int argc, char* argv[])
         /**
          * Code calculant les jeu.position des objest a chaque images (Saut, jeu.pos perso , sprites &nemi)
          * le code suicant est coder avec les PIEDS ! :*
-         * Pour savoir si collision on déplace l' OBJET VIRTUELLEMENT, puis on regarde si collision, si collision le mv est conserver, sinon annuler. (pas trè propre, mais bon .. ca marche .. xD)
+         * Pour savoir si collision on dÃ©place l' OBJET VIRTUELLEMENT, puis on regarde si collision, si collision le mv est conserver, sinon annuler. (pas trÃ¨ propre, mais bon .. ca marche .. xD)
          */
         if (droite&&(jeu.pos.x+51<900))
         {
@@ -1077,15 +1093,15 @@ int main(int argc, char* argv[])
                 jeu.pos.x++;
             }
         }
-        ///Pour savoir si collision, on déplace UNE AUTRES HITBOX VIRTUELLEMENT, puis on regarde si collision, si collision rien ne se produit, sinon le mv est accepter
-        if (saut==1) //si saut est ON alors on entame une procédure de montée en hauteur
+        ///Pour savoir si collision, on dÃ©place UNE AUTRES HITBOX VIRTUELLEMENT, puis on regarde si collision, si collision rien ne se produit, sinon le mv est accepter
+        if (saut==1) //si saut est ON alors on entame une procÃ©dure de montÃ©e en hauteur
         {
             tsaut++;
-            valtempsaut=sauttemp+sin(tsaut/(300/3.1415))*175;//la jeu.pos n'est pas défini par récurence car accélération n'est pas entière 250 = L 150 = H ! 2l=h ! BIEN !! ATTENTION aux accroissements d'accéleration !
+            valtempsaut=sauttemp+sin(tsaut/(300/3.1415))*175;//la jeu.pos n'est pas dÃ©fini par rÃ©curence car accÃ©lÃ©ration n'est pas entiÃ¨re 250 = L 150 = H ! 2l=h ! BIEN !! ATTENTION aux accroissements d'accÃ©leration !
             if((jeu.pos.y<600))jeu.pos.y=valtempsaut;//Pour la hauteur ne pas deplacer + LES BLOCKs A AJOUER ( MUR ) !!!!
             jeu.pos.y--;
             calculhitbox(&box,jeu.pos);
-            jeu.pos.y++;//on def la hitbox VIRTUELLE à une jeu.pos d'équart
+            jeu.pos.y++;//on def la hitbox VIRTUELLE Ã  une jeu.pos d'Ã©quart
             if ((tsaut==300)||calculcolision(&box,&jeu)||(jeu.pos.y>=600))
             {
                 tsaut=0;    // tsaut == L  MAX !!!!!! SIN PI ! SI tsault < L On arrte le saut plus TOt
@@ -1094,7 +1110,7 @@ int main(int argc, char* argv[])
             }
             jeu.pos.y++;
             calculhitbox(&box,jeu.pos);
-            jeu.pos.y--;//on def la hitbox VEIRTUELLE à une jeu.pos d'équart
+            jeu.pos.y--;//on def la hitbox VEIRTUELLE Ã  une jeu.pos d'Ã©quart
             if (calculcolision(&box,&jeu))
             {
                 tsaut=0;
@@ -1104,7 +1120,7 @@ int main(int argc, char* argv[])
         }
         else if(saut==0)
         {
-            sauttemp=jeu.pos.y;//complément car saut à définir à la pos ini
+            sauttemp=jeu.pos.y;//complÃ©ment car saut Ã  dÃ©finir Ã  la pos ini
 
             jeu.pos.y--;
             calculhitbox(&box,jeu.pos);
