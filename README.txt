@@ -19,7 +19,7 @@
  *  
  * 	/!\ #define rafraichissement 10 /!\ variable qui modifie le temps entre
  *   chaque rafraichissement
- * 	(A modifié en fonction de la rapidité ou lenteur du jeu)
+ * 	A modifié en fonction de la rapidité ou lenteur du jeu
  * 	
  * 	GL HF !
  *
